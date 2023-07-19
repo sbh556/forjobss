@@ -5,11 +5,14 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
+        stage("version"){
+            steps{
+                sh 'python3 --version'
+            }
+        }
         stage('hello'){
             steps {
-                if((sh 'python print("test")') == ''){
-                    echo "clean"
-                }
+                sh 'python3 print("aa")'
             }
         }
     }
