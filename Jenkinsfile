@@ -7,7 +7,9 @@ pipeline {
     stages {
         stage('hello'){
             steps {
-                echo "hello"
+                if((python3 -m py_compile main.py) == ''){
+                    echo "clean"
+                }
             }
         }
     }
