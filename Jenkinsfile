@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker{
-            image 'python:3'
-            lable 'mainnode'
-        }
-    }
+    agent {label "mainnode"}
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr:'5')
         disableConcurrentBuilds()
@@ -12,7 +7,7 @@ pipeline {
     stages {
         stage("version"){
             steps{
-                sh 'python3 --version'
+                sh 'apt install python3 -y'
             }
         }
         stage('hello'){
