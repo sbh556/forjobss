@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('pip installs'){
             steps {
-                sh 'pip3 install flash'
+                sh 'pip3 install flask'
                 sh 'python3 print("aa")'
             }
         }
