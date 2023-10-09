@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'python:3.11.2' } }
+    agent mainnode
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr:'5')
         disableConcurrentBuilds()
