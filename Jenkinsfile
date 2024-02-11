@@ -5,7 +5,7 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage("version"){
+        stage("versioninstall"){
             steps{
                 sh 'sudo apt install python3 -y'
             }
