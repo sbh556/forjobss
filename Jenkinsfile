@@ -5,6 +5,11 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
+        stage('modules'){
+            steps{
+                sh 'pip3 install flask'
+            }
+        }
         stage('hello'){
             steps {
                 sh 'python3 print("aa")'
