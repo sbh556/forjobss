@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('hello'){
             steps {
-                sh 'python3 print("aa")'
+                sh 'python3 simpleServer.py'
             }
         }
     }
