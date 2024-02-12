@@ -12,7 +12,7 @@ pipeline {
         }
         stage("check File"){
             steps{
-                    sh 'python3 -m py_compile simpleServer.py',
+                    sh 'python3 -m py_compile simpleServer.py'
                     echo 'SYNTAX OK'
                     sh 'flake8 simpleServer.py'
                     echo 'Linting OK'
