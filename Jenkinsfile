@@ -20,7 +20,7 @@ pipeline {
                 script{
                     def  a 
                     a = sh (
-                        script: 'curl http://localhost:8001/hello/amit',
+                        script: 'curl http://localhost:8001/hello/daniel',
                         returnStdout: true
                     ).trim()
                     if (a == 'hello daniel'){
