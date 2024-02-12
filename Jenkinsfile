@@ -16,7 +16,7 @@ pipeline {
                     if(syntaxError?.trim())
                     {
                         currentBuild.result = 'ABORTED'
-                        error('${syntaxError}')
+                        error('Error with file syntax: ${syntaxError}')
                     }
                 }
             }
