@@ -23,7 +23,7 @@ pipeline {
                         returnStdout: true
                     ).trim()
                 }
-                echo "ABuild full flag: ${DATA_RETURNS}"
+                echo "Build full flag: ${DATA_RETURNS}"
             }
         }
     }
