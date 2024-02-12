@@ -5,6 +5,22 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
+        stage("check syntax"){
+            steps{
+                script{
+                    def syntaxError
+                    syntaxError = sh (
+                        script:'python3 -m py_compile simpleServer.py'
+                        returnStdout: true
+                    )
+                    if(syntaxError?.trim())
+                    {
+                        currentBuild.result = 'ABORTED'
+                        error('${syntaxError}')
+                    }
+                }
+            }
+        }
         stage("version"){
             steps{
                 sh 'sudo docker build -t simpleserver:latest .'
@@ -27,6 +43,7 @@ pipeline {
                         currentBuild.result = 'SUCCESS'
                     }else{
                         currentBuild.result = 'FAILURE'
+                        echo 'Output doesnt match input'
                     }
                     sh 'sudo docker stop $(sudo docker ps -a -q)'
                     sh 'sudo docker rm $(sudo docker ps -a -q)'
