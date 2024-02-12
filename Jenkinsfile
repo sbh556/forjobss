@@ -28,8 +28,8 @@ pipeline {
                     }else{
                         currentBuild.result = 'FAILURE'
                     }
-                    sh 'docker stop $(docker ps -a -q)'
-                    sh 'docker rm $(docker ps -a -q)'
+                    sh 'sudo docker stop $(docker ps -a -q)'
+                    sh 'sudo docker rm $(docker ps -a -q)'
                 }
             }
         }
