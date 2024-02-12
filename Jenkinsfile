@@ -12,7 +12,7 @@ pipeline {
         }
         stage('hello'){
             steps {
-                sh 'sudo docker run -d -p 8001:8001 --name server1 simpleserver:latest'
+                sh 'sudo docker run -d -p 8001:8001 simpleserver:latest'
             }
         }
         stage('check_working'){
