@@ -20,10 +20,12 @@ pipeline {
                 script{
                     def  a 
                     a = sh (
-                        script: 'curl http://localhost:8001/hello/daniel',
+                        script: 'curl http://localhost:8001/hello/amit',
                         returnStdout: true
                     ).trim()
-                    echo "Build full flag: ${a}"
+                    if (a == 'hello daniel'){
+                        currentBuild.result = 'SUCCESS'
+                    }
                 }
             }
         }
