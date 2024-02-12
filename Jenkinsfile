@@ -17,10 +17,12 @@ pipeline {
         }
         stage('check_working'){
             steps {
-                def  DATA_RETURNS = sh (
-                    script: 'curl http://localhost:8001/hello/daniel',
-                    returnStdout: true
-                ).trim()
+                script{
+                    def  DATA_RETURNS = sh (
+                        script: 'curl http://localhost:8001/hello/daniel',
+                        returnStdout: true
+                    ).trim()
+                }
                 echo "Build full flag: ${DATA_RETURNS}"
             }
         }
