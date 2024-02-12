@@ -10,7 +10,7 @@ pipeline {
                 script{
                     def syntaxError
                     syntaxError = sh (
-                        script:'python3 -m py_compile simpleServer.py'
+                        script:'python3 -m py_compile simpleServer.py',
                         returnStdout: true
                     )
                     if(syntaxError?.trim())
