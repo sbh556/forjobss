@@ -5,21 +5,17 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage("check syntax"){
+        stage("installation of mdules"){
             steps{
-                script{
-                    def syntaxError
-                    syntaxError = sh (
-                        script:'python3 -m py_compile simpleServer.py',
-                        returnStdout: true
-                    )
-                    if(syntaxError?.trim())
-                    {
-                        currentBuild.result = 'ABORTED'
-                        error('Syntax Error')
-                        echo ('Syntax error: ${syntaxError}')
-                    }
-                }
+                sh 'sudo pip3 install flake8'
+            }
+        }
+        stage("check File"){
+            steps{
+                    sh 'python3 -m py_compile simpleServer.py',
+                    echo 'SYNTAX OK'
+                    sh 'flake8 simpleServer.py'
+                    echo 'Linting OK'
             }
         }
         stage("version"){
