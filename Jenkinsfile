@@ -5,14 +5,46 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
+        stage("installation of mdules"){
+            steps{
+                sh 'sudo pip3 install flake8'
+            }
+        }
+        stage("check File"){
+            steps{
+                    sh 'python3 -m py_compile simpleServer.py'
+                    echo 'SYNTAX OK'
+                    sh 'flake8 simpleServer.py'
+                    echo 'Linting OK'
+            }
+        }
         stage("version"){
             steps{
-                sh 'sudo apt install python3 -y'
+                sh 'sudo docker build -t simpleserver:latest .'
             }
         }
         stage('hello'){
             steps {
-                sh 'nohup python3 simpleServer.py'
+                sh 'sudo docker run -d -p 8001:8001 simpleserver:latest'
+            }
+        }
+        stage('check_working'){
+            steps {
+                script{
+                    def  a 
+                    a = sh (
+                        script: 'curl http://localhost:8001/hello/daniel',
+                        returnStdout: true
+                    ).trim()
+                    if (a == 'hello daniel'){
+                        currentBuild.result = 'SUCCESS'
+                    }else{
+                        currentBuild.result = 'FAILURE'
+                        echo 'Output doesnt match input'
+                    }
+                    sh 'sudo docker stop $(sudo docker ps -a -q)'
+                    sh 'sudo docker rm $(sudo docker ps -a -q)'
+                }
             }
         }
     }
