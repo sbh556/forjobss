@@ -7,12 +7,12 @@ pipeline {
     stages {
         stage("version"){
             steps{
-                sh 'docker build -t simpleserver:latest .'
+                sh 'sudo docker build -t simpleserver:latest .'
             }
         }
         stage('hello'){
             steps {
-                sh 'docker run -d -p 8001:8001 --name server1 simpleserver:latest'
+                sh 'sudo docker run -d -p 8001:8001 --name server1 simpleserver:latest'
             }
         }
         stage('check_working'){
