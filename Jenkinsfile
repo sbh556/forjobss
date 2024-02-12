@@ -17,7 +17,7 @@ pipeline {
         }
         stage('check_working'){
             steps {
-                DATA_RETURNS = sh (
+                def  DATA_RETURNS = sh (
                     script: 'curl http://localhost:8001/hello/daniel',
                     returnStdout: true
                 ).trim()
