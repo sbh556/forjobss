@@ -25,7 +25,11 @@ pipeline {
                     ).trim()
                     if (a == 'hello daniel'){
                         currentBuild.result = 'SUCCESS'
+                    }else{
+                        currentBuild.result = 'FAILURE'
                     }
+                    sh 'docker stop $(docker ps -a -q)'
+                    sh 'docker rm $(docker ps -a -q)'
                 }
             }
         }
